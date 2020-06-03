@@ -15,6 +15,7 @@ export interface SharkConfig {
     xml: Xml,
     isWx: boolean,
     langManager: LangManager,
+    resourceManager: ResourceManager
 }
 
 export interface Http {
@@ -35,4 +36,12 @@ export interface Xml {
 export interface LangManager {
     translate(key: string): string;
     lang: string;
+}
+
+export interface ResourceManager {
+    init(data: Element);
+    add(id: string, src: string, type?: string);
+    load(ids: string[]);
+    resource(name: string);
+    complete(completeHandler: Function);
 }

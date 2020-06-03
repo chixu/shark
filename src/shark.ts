@@ -3,7 +3,7 @@
 // import * as xml from "./utils/xml";
 import * as json from "./utils/json";
 import * as graphics from "./utils/graphics";
-import { ResourceManager } from "./core/resourceManager";
+// import { ResourceManager } from "./core/resourceManager";
 import { WindowManager } from "./core/windowManager";
 import { LayoutManager } from "./core/layoutManager";
 import { SceneManager } from "./core/sceneManager";
@@ -12,7 +12,7 @@ import { KeyboardManager } from "./core/keyboardManager";
 import EventEmitter from "./core/eventEmitter";
 import { Device } from "./core/device";
 import { Factory } from "./core/factory";
-import { Orientation, SharkConfig, Http, Xml, LangManager } from "./type";
+import { Orientation, SharkConfig, Http, Xml, LangManager, ResourceManager } from "./type";
 import { Scene } from "./display/scene";
 //import * as PIXI from 'pixi.js'
 
@@ -59,16 +59,17 @@ export async function run(_config: SharkConfig) {
     http = _config.http;
     xml = _config.xml;
     langManager = _config.langManager;
-    let response = await http.get('http://localhost:3001/layout/main.xml');
+    let response = await http.get('layout/main.xml');
     // console.log(response);
     let layout: Element = xml.parse(response);
     console.log(layout);
     console.log(xml.str(layout, 'data'));
     layoutManager = new LayoutManager(layout);
     let resource = layout.getElementsByTagName("resource")[0];
-    resourceManager = new ResourceManager(resource);
+    resourceManager = _config.resourceManager;
+    resourceManager.init(resource);
     console.log("langManager", langManager.lang);
-    // resourceManager.add('text', `assets/${langManager.lang}.json`);
+    resourceManager.add('text', `assets/${langManager.lang}.json`);
     // resourceManager.add('text', `assets/en.json`);
     let data: any = json.parseFromData(xml.str(layout, 'data'));
     config.width = parseInt(data.width);//xml.num(app, "width", 800);

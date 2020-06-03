@@ -1,8 +1,9 @@
 import * as shark from "../shark";
+import * as types from "../type";
 //import * as PIXI from 'pixi.js'
 
 
-export class ResourceManager {
+export class ResourceManager implements types.ResourceManager {
   private resources: {
     [id: string]: {
       id: string,
@@ -15,12 +16,15 @@ export class ResourceManager {
   public loader: any;
   private _progress;
   private _complete;
-  constructor(data: Element) {
-    // super();
+  // constructor(data: Element) {
+  //   // super();
+  // }
+
+  public init(data: Element) {
     shark.xml.forEachElement(data, e => this.add(shark.xml.id(e), shark.xml.attr(e, 'src'), e.tagName));
     this.loader = PIXI.loader;
     this.loader.on('progress', (_, data: any) => {
-      console.log("loader progress", data);
+      console.log("loader progress", typeof (data), data);
       for (let k in this.resources) {
         let d = this.resources[k];
         if (d.src == data.url) {
@@ -40,7 +44,6 @@ export class ResourceManager {
     });
     console.log(this.resources);
   }
-
   //add resource
   public add(id: string, src: string, type: string = 'json') {
     if (this.resources[id]) {
