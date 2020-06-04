@@ -13,6 +13,7 @@ export class SharkConfig implements types.SharkConfig {
     public isWx: boolean = true;
     public langManager: types.LangManager;
     public resourceManager: types.ResourceManager;
+    public isMobile: boolean = true;
 
     constructor() {
         this.canvas = canvas;

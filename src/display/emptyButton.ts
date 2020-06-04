@@ -65,7 +65,7 @@ export class EmptyButton extends DisplayObject2 {
     }
 
     private buttonUpHandler(e) {
-        console.log(e);
+        // console.log(e);
         if (!this._enabled) return;
         // this.sprite.texture = this.upTexture;
         // this.sprite.x = 0;

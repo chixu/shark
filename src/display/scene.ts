@@ -9,22 +9,22 @@ export class Scene extends PIXI.Container {
     maskPanel: PIXI.Graphics;
     updates = [];
     private startViewTime: number;
-    constructor() {
-        super();
-        console.log('new scene');
+    // constructor() {
+    //     super();
+    //     console.log('new scene');
 
 
-        this.interactive = true;
-        this.buttonMode = true;
+    //     this.interactive = true;
+    //     this.buttonMode = true;
 
-        this.on("click", this.buttonClickedHandler)
-            .on("tap", this.buttonClickedHandler)
-            ;
-    }
+    //     this.on("click", this.buttonClickedHandler)
+    //         .on("tap", this.buttonClickedHandler)
+    //         ;
+    // }
 
-    buttonClickedHandler(e) {
-        console.log("scene click", e.data.global);
-    }
+    // buttonClickedHandler(e) {
+    //     console.log("scene click", e.data.global);
+    // }
 
     enter(args?) {
         this.startViewTime = (new Date()).getTime();

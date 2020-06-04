@@ -14,6 +14,7 @@ export interface SharkConfig {
     http: Http,
     xml: Xml,
     isWx: boolean,
+    isMobile: boolean,
     langManager: LangManager,
     resourceManager: ResourceManager
 }

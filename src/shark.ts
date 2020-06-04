@@ -18,6 +18,9 @@ import { Scene } from "./display/scene";
 
 export let renderer;
 // export let resources: any = {};
+
+//todo
+//refactor config
 export let config: any = {};
 export let stage;
 export let eventBus = new EventEmitter();
@@ -59,7 +62,8 @@ export async function run(_config: SharkConfig) {
     http = _config.http;
     xml = _config.xml;
     langManager = _config.langManager;
-    let response = await http.get('layout/main.xml');
+    let layoutUrl = _config.isMobile ? 'layout/main.xml' : 'layout/main-web.xml'
+    let response = await http.get(layoutUrl);
     // console.log(response);
     let layout: Element = xml.parse(response);
     console.log(layout);
@@ -82,6 +86,7 @@ export async function run(_config: SharkConfig) {
         config.orientation = data.orientation || 'portrait';
     config.mobile = true;
     config.isWx = _config.isWx;
+    config.isMobile = _config.isMobile;
     // config.env = http.getQueryString('env');
     // config.platform = http.getQueryString('platform') || 'mobile';
     console.log(config.width, config.height);
