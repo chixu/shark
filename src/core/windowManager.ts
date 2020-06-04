@@ -138,6 +138,7 @@ export class WindowManager {
         let canvas = shark.canvas;
         canvas.style.marginLeft = ((window.innerWidth - width) / 2) + "px";
         canvas.style.marginTop = ((window.innerHeight - height) / 2) + "px";
+        canvas.style.width = width + "px";
 
         console.log("layout", window.innerWidth, window.innerHeight, ratio, canvas.style.marginLeft, canvas.style.marginTop);
         if (this.prevOrientation != orient && orientMode == "both") {
